@@ -22,7 +22,8 @@ import {
   History,
   Trash2,
   Clock,
-  AlertCircle
+  AlertCircle,
+  Database
 } from 'lucide-react';
 import { cn } from './lib/utils';
 import { detectFakeNews, DetectionResult } from './lib/gemini';
@@ -248,14 +249,75 @@ const Detector = () => {
       title: "Ancient Ruins",
       content: "Archeologists have discovered what appears to be a 5,000-year-old microchip embedded in a limestone block at a temple site in Southeast Asia. This finding challenges our entire understanding of primitive human technology.",
       type: "DECEPTIVE"
+    },
+    {
+      title: "Space Station Beta",
+      content: "The International Space Station has successfully deployed the new 'Solar Web' array, a next-generation power collection system designed to increase energy efficiency by 40%. The mission was a collaborative effort between NASA, ESA, and JAXA, marking a significant step forward in long-term orbital sustainability and deep-space research preparation.",
+      type: "AUTHENTIC"
+    },
+    {
+      title: "Ocean Preservation",
+      content: "A landmark treaty has been signed by 190 countries to protect 30% of the world's international waters by 2030. The 'High Seas Treaty' provides a legal framework for establishing large-scale marine protected areas, aiming to safeguard biodiversity and manage the impacts of climate change on ocean ecosystems for future generations.",
+      type: "AUTHENTIC"
+    },
+    {
+      title: "Deep Report: Neural Ethics",
+      content: `[VERITAS DEEP ANALYSIS REPORT #882-A]
+      SUBJECT: THE EMERGENCE OF UNREGULATED NEURAL INTERFACES IN SEMI-AUTONOMOUS ECONOMIC ZONES.
+      
+      Executive Summary:
+      This 4,000-word investigative piece explores the rapid proliferation of sub-dermal communication nodes within the 'New Eden' administrative sector. Unlike consumer-grade wearables, these 'ghost-chips' operate on sub-1GHz frequencies, bypassing standard regulatory oversight and enabling what proponents call 'direct-thought commerce.' However, leaked internal documents from the bio-tech conglomerate Sirius Neuro-Systems suggest a much darker reality.
+      
+      The Investigation:
+      Over a period of six months, our team embedded with 'signal-runners'—individuals who maintain the clandestine mesh networks required for these interfaces to function. We discovered that the devices are not merely passive receivers but active cognitive modifiers. The data points to a consistent 12% increase in risk-taking behavior among users, specifically during peak trading hours on decentralized exchanges.
+      
+      Clinical Observations:
+      Medical professionals at the Fringe Health Clinic have reported a surge in 'synaptic-firewall failure,' a condition characterized by uncontrollable micro-tremors and acute sensory overload. Dr. Aris Thorne, head of neuro-pathology, states: "We are seeing structural changes in the prefrontal cortex that shouldn't be possible in adults. It's as if the brain is being literally re-wired to serve as a biological relay node."
+      
+      The Corporate Connection:
+      While Sirius Neuro-Systems publicly denies any involvement in the black-market distribution of these nodes, trace-route analysis of the firmware updates suggests the source servers are hosted within their primary data center in Reykjavik. The encryption keys used for the latest patch, v9.4.2, are identical to those used in the company's military-grade 'Aegis' project.
+      
+      Ethical Implications:
+      If these interfaces become the de facto standard for labor in economic zones, the concept of cognitive liberty ceases to exist. We found evidence of 'over-ride' protocols that allow network admins to induce a state of hyper-focus on demand. This 'focus-as-a-service' model is being marketed to logistics companies as the ultimate solution to warehouse fatigue, but at the cost of the user's long-term mental stability.
+      
+      Conclusion:
+      The data analyzed by Veritas.OS indicates a 98% probability that the promotional materials for these devices are deceptive, masking a systemic plan for behavioral control under the guise of technological evolution. The following 150 pages of raw signal data and witness testimony serve as a comprehensive indictment of the current trajectory of neural-commerce.
+      
+      [END OF SUMMARY LOG - PROCEED TO DATA ANALYSIS]`,
+      type: "LONG-FORM"
+    },
+    {
+      title: "Log: Global Finance 2026",
+      content: `TRANSCRIPT: EMERGENCY PLENARY SESSION - BASEL III+ AMENDMENTS
+      DATE: SEPTEMBER 14, 2026
+      LOCATION: INTERNATIONAL SETTLEMENTS COMPLEX, SECTOR 7
+      
+      Chairman: The session is now in order. We are here to address the 'Liquidity Singularity' observed in the sovereign debt markets of the G12 nations. What began as a localized algorithmic glitch in the Tokyo-Frankfurt high-frequency tunnel has evolved into a full-scale divergence of value-perception between physical and digital gold assets.
+      
+      Dr. Vogel: Mr. Chairman, the data suggests this is not a glitch. We have identified a pattern of 'Mirror-Trading' executed through unassigned quantum-ledgers. Essentially, someone is creating a parallel economy that looks identical to our own but operates with zero-latency reconciliation. This is draining the trust-capital from our centralized clearinghouses faster than we can inject synthetic liquidity.
+      
+      [Section 2: The Infrastructure Failure]
+      Last week, the primary fiber-optic cable crossing the Greenland-Iceland-UK (GIUK) gap was severed. While initially attributed to seismic activity, our underwater drones have captured footage of precision cutting tools being used. This wasn't an accident. It was a strategic isolation of the Atlantic markets to facilitate a 'Grand Re-Sync' of the valuation models.
+      
+      [Section 3: The Impact on Local Economies]
+      In the absence of a stable global anchor, currencies in the Pacific rim have started fluctuating by as much as 20% within a single hour. This 'Volatility-Pulse' is destroying the purchasing power of middle-market consumers. We are seeing a return to localized barter systems in cities like Seoul and Singapore, despite their advanced technological infrastructure.
+      
+      [Section 4: The Algorithm's Verdict]
+      Our own predictive engines, including the newly integrated Veritas.OS module, are flagging 84% of all institutional communication as 'Strategic Misinformation.' The banks are lying to the central banks, and the central banks are lying to each other to prevent a total collapse of the confidence-lattice.
+      
+      [Section 5: Proposed Intervention]
+      The committee proposes the immediate activation of the 'Hard-Reset' protocol. This involves the 48-hour suspension of all cross-border digital transactions and the physical auditing of all gold reserves. It is a brutal measure, but the alternative is the permanent fragmentation of the global financial identity.
+      
+      [Section 6: Dissenting Opinion]
+      However, many economists argue that this 'Singularity' is simply the natural evolution of value into a purely energetic form. They suggest we shouldn't fight the re-sync but rather adapt our institutions to it. This 'Post-Currency' movement is gaining traction among the younger demography, who have already migrated their assets into decentralized, energy-backed tokens.
+      
+      [END OF TRANSCRIPT - CLASSIFIED LEVEL 5]`,
+      type: "LONG-FORM"
     }
   ];
 
-  const handleDetect = async (override?: string) => {
-    if (override) setText(override);
-    const val = override || text;
-    
-    if (!val || val.length < 20) {
+  const handleDetect = async () => {
+    if (!text || text.length < 20) {
       setError("Analysis requirement failure: Minimum 20 characters required for feature extraction.");
       return;
     }
@@ -265,9 +327,9 @@ const Detector = () => {
     setResult(null);
     
     try {
-      const data = await detectFakeNews(val);
+      const data = await detectFakeNews(text);
       setResult(data);
-      saveToHistory(val, data);
+      saveToHistory(text, data);
     } catch (e) {
       setError("System fault detected. Analysis aborted.");
     } finally {
@@ -276,6 +338,7 @@ const Detector = () => {
   };
 
   return (
+    <>
     <section id="detector" className="py-24 bg-brand-secondary overflow-hidden">
       <Container>
         <SectionHeading 
@@ -308,7 +371,7 @@ const Detector = () => {
                   setText(e.target.value);
                   if (e.target.value.length >= 20) setError(null);
                 }}
-                placeholder="[SIGNAL_READY]: Load sample or paste text... (min 20 chars)"
+                placeholder="[SIGNAL_READY]: Load sample from Archives or paste text below... (min 20 chars)"
                 className={cn(
                   "w-full h-[320px] p-8 font-mono text-sm bg-transparent outline-none transition-all resize-none text-slate-300 placeholder:text-slate-700 data-grid",
                   error && "border-2 border-red-500/50"
@@ -320,29 +383,6 @@ const Detector = () => {
                   <span className="text-[10px] font-mono text-red-400 uppercase tracking-widest">{error}</span>
                 </div>
               )}
-              <div className="bg-slate-900/50 p-6 border-t border-white/5">
-                <div className="flex justify-between items-center mb-4">
-                  <p className="text-[9px] font-mono text-slate-500 uppercase tracking-widest flex items-center gap-2">
-                    <Brain className="w-3 h-3" /> Training Materials / Samples:
-                  </p>
-                  <span className="text-[8px] font-mono text-brand-accent px-2 py-0.5 border border-brand-accent/30 lowercase">ready.os</span>
-                </div>
-                <div className="grid grid-cols-2 md:grid-cols-5 gap-2 max-h-[120px] overflow-y-auto pr-2 custom-scrollbar">
-                  {samples.map((s, i) => (
-                    <button 
-                      key={i}
-                      onClick={() => handleDetect(s.content)}
-                      className="text-left p-2 border border-white/5 hover:border-brand-accent/50 hover:bg-brand-accent/5 transition-all group overflow-hidden"
-                    >
-                      <p className="text-[9px] font-bold text-white uppercase group-hover:text-brand-accent truncate mb-0.5">{s.title}</p>
-                      <p className={cn(
-                        "text-[7px] font-mono uppercase tracking-tighter",
-                        s.type === "AUTHENTIC" ? "text-green-500" : "text-amber-500"
-                      )}>{s.type}</p>
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
             
             <button
@@ -443,11 +483,11 @@ const Detector = () => {
                                   onClick={(e) => {
                                     e.stopPropagation();
                                     setText(item.text);
-                                    handleDetect(item.text);
+                                    setError(null);
                                   }}
                                   className="text-[9px] font-mono px-3 py-1 bg-white/5 hover:bg-white/10 text-white border border-white/10 uppercase tracking-widest"
                                 >
-                                  Re-Analyze
+                                  Load to Terminal
                                 </button>
                               </div>
                             </div>
@@ -572,6 +612,64 @@ const Detector = () => {
         </div>
       </Container>
     </section>
+
+    <section id="archives" className="py-32 bg-brand-primary border-y border-white/5 relative data-grid">
+      <Container>
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+          <SectionHeading 
+            title="Archive Library" 
+            subtitle="Access deep-form reports and training datasets for cross-referencing and validation."
+          />
+          <div className="flex items-center gap-4 scientific-border p-4 h-fit">
+            <Database className="w-5 h-5 text-brand-accent" />
+            <div className="flex flex-col">
+              <span className="text-[8px] font-mono text-slate-500 uppercase tracking-widest leading-none">Database Status</span>
+              <span className="text-[10px] font-mono font-bold text-green-500 uppercase tracking-widest">Connected / Encrypted</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {samples.map((s, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+              onClick={() => { 
+                setText(s.content); 
+                setError(null);
+                document.getElementById('detector')?.scrollIntoView({ behavior: 'smooth' }); 
+              }}
+              className="scientific-border group p-8 flex flex-col justify-between hover:bg-white/5 cursor-pointer h-full"
+            >
+              <div>
+                <div className="flex justify-between items-start mb-6">
+                  <span className={cn(
+                    "text-[8px] font-mono font-bold px-3 py-1 border uppercase tracking-widest",
+                    s.type === "AUTHENTIC" ? "text-green-400 border-green-400/30" : 
+                    s.type === "DECEPTIVE" ? "text-red-400 border-red-400/30" :
+                    s.type === "LONG-FORM" ? "text-brand-pink border-brand-pink/30" :
+                    "text-amber-400 border-amber-400/30"
+                  )}>{s.type}</span>
+                  <div className="h-0.5 w-8 bg-white/10 group-hover:bg-brand-accent transition-colors" />
+                </div>
+                <h3 className="text-xl font-bold text-white uppercase tracking-tight mb-4 group-hover:text-brand-accent transition-colors">{s.title}</h3>
+                <p className="text-[10px] font-mono text-slate-500 uppercase tracking-wider leading-relaxed line-clamp-4">
+                  {s.content}
+                </p>
+              </div>
+              <div className="mt-8 flex items-center justify-between opacity-40 group-hover:opacity-100 transition-opacity">
+                <span className="text-[9px] font-mono text-slate-500 uppercase">Load Report</span>
+                <MousePointer2 className="w-4 h-4 text-brand-accent" />
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </Container>
+    </section>
+    </>
   );
 };
 
