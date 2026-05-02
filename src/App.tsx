@@ -991,12 +991,14 @@ const Footer = () => (
           </div>
         </div>
       </div>
-      <div className="mt-20 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4 text-[9px] font-mono text-slate-600 tracking-widest">
-        <div className="flex items-center gap-4">
+      <div className="mt-20 pt-8 border-t border-white/5 flex flex-col items-center gap-6 text-[9px] font-mono text-slate-600 tracking-widest">
+        <div className="flex flex-col sm:flex-row justify-between items-center w-full gap-4">
           <span>© 2026 VERITAS ML PROTOCOLS</span>
-          <span className="text-brand-accent font-bold">MADE BY LAKSH</span>
+          <span>LATENCY: 1.24 MS / REGION: ASIA-CENTRAL</span>
         </div>
-        <span>LATENCY: 1.24 MS / REGION: ASIA-CENTRAL</span>
+        <div className="text-brand-accent font-bold text-center text-xs animate-pulse">
+          ❤️ MADE BY LAKSH ❤️
+        </div>
       </div>
     </Container>
   </footer>
