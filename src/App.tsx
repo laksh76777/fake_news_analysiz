@@ -65,6 +65,133 @@ const SectionHeading = ({ title, subtitle }: { title: string; subtitle?: string 
 
 // --- Sections ---
 
+const SAMPLES = [
+  {
+    title: "Antarctic Discovery",
+    content: "BREAKING: Independent research team claims to have discovered a massive geothermal city beneath the Antarctic ice shield. Sources say government agencies are actively supressing the findings to prevent global panic over ancient technology.",
+    type: "DECEPTIVE"
+  },
+  {
+    title: "Market Volatility",
+    content: "The Federal Reserve announced a surprise interest rate cut today, citing concerns over stagnant growth in the manufacturing sector. Economists predict the move will stabilize markets ahead of the upcoming quarterly reporting cycle.",
+    type: "AUTHENTIC"
+  },
+  {
+    title: "Miracle Cure",
+    content: "A hidden tropical fruit found in the Amazon has been proven to reverse the effects of aging and cure chronic heart disease in just 48 hours. Big Pharma has been keeping this secret to protect their profits. Share before this is taken down!",
+    type: "DECEPTIVE"
+  },
+  {
+    title: "Mars Exploration",
+    content: "NASA's Perseverance rover has successfully collected its first core sample from a rock that may have been altered by water in the ancient past. The sample will be stored for future return to Earth in a joint mission with the ESA.",
+    type: "AUTHENTIC"
+  },
+  {
+    title: "Hyperloop Pilot",
+    content: "The first commercial Hyperloop track is set to open in the desert between Dubai and Abu Dhabi next month. Passengers will travel at speeds exceeding 700mph in vacuum-sealed pods, rendering traditional rail travel obsolete by 2030.",
+    type: "SENSATIONAL"
+  },
+  {
+    title: "Energy Breakthrough",
+    content: "Researchers at the National Ignition Facility have achieved a net energy gain in a fusion reaction for the second time, producing more energy from fusion than the laser energy used to drive it. This marks a major milestone for clean power.",
+    type: "AUTHENTIC"
+  },
+  {
+    title: "Election Tampering",
+    content: "URGENT: Leaked documents show that smart thermostats were used to flip votes in several key counties during the last primary. The devices were reportedly accessed via a backdoor in the firmware by foreign intelligence services.",
+    type: "DECEPTIVE"
+  },
+  {
+    title: "Tech Regulation",
+    content: "European Union regulators have fined several major tech conglomerates over antitrust violations related to their digital advertising practices. The ruling mandates structural changes to ensure fair competition for smaller publishers.",
+    type: "AUTHENTIC"
+  },
+  {
+    title: "Deep Sea Mystery",
+    content: "A strange, rhythmic metallic sound emanating from the Mariana Trench has stumped oceanographers. Some fringe theorists suggest it is a biological signal from a previously unknown gargantuan species living in the benthos.",
+    type: "SENSATIONAL"
+  },
+  {
+    title: "Global Warming",
+    content: "Arctic sea ice reached its minimum extent for the year, ranking among the lowest on record according to data from the NSIDC. The trend continues to show a significant decline in summer ice coverage over the last four decades.",
+    type: "AUTHENTIC"
+  },
+  {
+    title: "Crypto Regulation",
+    content: "BREAKING: Global financial regulators have announced a complete ban on all decentralized trading platforms starting next Monday. The move aims to prevent systemic risk and combat money laundering through unhosted wallets.",
+    type: "SENSATIONAL"
+  },
+  {
+    title: "Ancient Ruins",
+    content: "Archeologists have discovered what appears to be a 5,000-year-old microchip embedded in a limestone block at a temple site in Southeast Asia. This finding challenges our entire understanding of primitive human technology.",
+    type: "DECEPTIVE"
+  },
+  {
+    title: "Space Station Beta",
+    content: "The International Space Station has successfully deployed the new 'Solar Web' array, a next-generation power collection system designed to increase energy efficiency by 40%. The mission was a collaborative effort between NASA, ESA, and JAXA, marking a significant step forward in long-term orbital sustainability and deep-space research preparation.",
+    type: "AUTHENTIC"
+  },
+  {
+    title: "Ocean Preservation",
+    content: "A landmark treaty has been signed by 190 countries to protect 30% of the world's international waters by 2030. The 'High Seas Treaty' provides a legal framework for establishing large-scale marine protected areas, aiming to safeguard biodiversity and manage the impacts of climate change on ocean ecosystems for future generations.",
+    type: "AUTHENTIC"
+  },
+  {
+    title: "Deep Report: Neural Ethics",
+    content: `[VERITAS DEEP ANALYSIS REPORT #882-A]
+      SUBJECT: THE EMERGENCE OF UNREGULATED NEURAL INTERFACES IN SEMI-AUTONOMOUS ECONOMIC ZONES.
+      
+      Executive Summary:
+      This 4,000-word investigative piece explores the rapid proliferation of sub-dermal communication nodes within the 'New Eden' administrative sector. Unlike consumer-grade wearables, these 'ghost-chips' operate on sub-1GHz frequencies, bypassing standard regulatory oversight and enabling what proponents call 'direct-thought commerce.' However, leaked internal documents from the bio-tech conglomerate Sirius Neuro-Systems suggest a much darker reality.
+      
+      The Investigation:
+      Over a period of six months, our team embedded with 'signal-runners'—individuals who maintain the clandestine mesh networks required for these interfaces to function. We discovered that the devices are not merely passive receivers but active cognitive modifiers. The data points to a consistent 12% increase in risk-taking behavior among users, specifically during peak trading hours on decentralized exchanges.
+      
+      Clinical Observations:
+      Medical professionals at the Fringe Health Clinic have reported a surge in 'synaptic-firewall failure,' a condition characterized by uncontrollable micro-tremors and acute sensory overload. Dr. Aris Thorne, head of neuro-pathology, states: "We are seeing structural changes in the prefrontal cortex that shouldn't be possible in adults. It's as if the brain is being literally re-wired to serve as a biological relay node."
+      
+      The Corporate Connection:
+      While Sirius Neuro-Systems publicly denies any involvement in the black-market distribution of these nodes, trace-route analysis of the firmware updates suggests the source servers are hosted within their primary data center in Reykjavik. The encryption keys used for the latest patch, v9.4.2, are identical to those used in the company's military-grade 'Aegis' project.
+      
+      Ethical Implications:
+      If these interfaces become the de facto standard for labor in economic zones, the concept of cognitive liberty ceases to exist. We found evidence of 'over-ride' protocols that allow network admins to induce a state of hyper-focus on demand. This 'focus-as-a-service' model is being marketed to logistics companies as the ultimate solution to warehouse fatigue, but at the cost of the user's long-term mental stability.
+      
+      Conclusion:
+      The data analyzed by Veritas.OS indicates a 98% probability that the promotional materials for these devices are deceptive, masking a systemic plan for behavioral control under the guise of technological evolution. The following 150 pages of raw signal data and witness testimony serve as a comprehensive indictment of the current trajectory of neural-commerce.
+      
+      [END OF SUMMARY LOG - PROCEED TO DATA ANALYSIS]`,
+    type: "LONG-FORM"
+  },
+  {
+    title: "Log: Global Finance 2026",
+    content: `TRANSCRIPT: EMERGENCY PLENARY SESSION - BASEL III+ AMENDMENTS
+      DATE: SEPTEMBER 14, 2026
+      LOCATION: INTERNATIONAL SETTLEMENTS COMPLEX, SECTOR 7
+      
+      Chairman: The session is now in order. We are here to address the 'Liquidity Singularity' observed in the sovereign debt markets of the G12 nations. What began as a localized algorithmic glitch in the Tokyo-Frankfurt high-frequency tunnel has evolved into a full-scale divergence of value-perception between physical and digital gold assets.
+      
+      Dr. Vogel: Mr. Chairman, the data suggests this is not a glitch. We have identified a pattern of 'Mirror-Trading' executed through unassigned quantum-ledgers. Essentially, someone is creating a parallel economy that looks identical to our own but operates with zero-latency reconciliation. This is draining the trust-capital from our centralized clearinghouses faster than we can inject synthetic liquidity.
+      
+      [Section 2: The Infrastructure Failure]
+      Last week, the primary fiber-optic cable crossing the Greenland-Iceland-UK (GIUK) gap was severed. While initially attributed to seismic activity, our underwater drones have captured footage of precision cutting tools being used. This wasn't an accident. It was a strategic isolation of the Atlantic markets to facilitate a 'Grand Re-Sync' of the valuation models.
+      
+      [Section 3: The Impact on Local Economies]
+      In the absence of a stable global anchor, currencies in the Pacific rim have started fluctuating by as much as 20% within a single hour. This 'Volatility-Pulse' is destroying the purchasing power of middle-market consumers. We are seeing a return to localized barter systems in cities like Seoul and Singapore, despite their advanced technological infrastructure.
+      
+      [Section 4: The Algorithm's Verdict]
+      Our own predictive engines, including the newly integrated Veritas.OS module, are flagging 84% of all institutional communication as 'Strategic Misinformation.' The banks are lying to the central banks, and the central banks are lying to each other to prevent a total collapse of the confidence-lattice.
+      
+      [Section 5: Proposed Intervention]
+      The committee proposes the immediate activation of the 'Hard-Reset' protocol. This involves the 48-hour suspension of all cross-border digital transactions and the physical auditing of all gold reserves. It is a brutal measure, but the alternative is the permanent fragmentation of the global financial identity.
+      
+      [Section 6: Dissenting Opinion]
+      However, many economists argue that this 'Singularity' is simply the natural evolution of value into a purely energetic form. They suggest we shouldn't fight the re-sync but rather adapt our institutions to it. This 'Post-Currency' movement is gaining traction among the younger demography, who have already migrated their assets into decentralized, energy-backed tokens.
+      
+      [END OF TRANSCRIPT - CLASSIFIED LEVEL 5]`,
+    type: "LONG-FORM"
+  }
+];
+
 const Header = ({ soundEnabled, onToggleSound }: { soundEnabled: boolean, onToggleSound: () => void }) => (
   <header className="fixed top-0 w-full z-50 bg-brand-primary/80 backdrop-blur-xl border-b border-white/5 h-20 flex items-center">
     <Container className="w-full flex justify-between items-center">
@@ -206,7 +333,7 @@ const Detector = ({
   useEffect(() => {
     // Buzzer Alert Sound
     alertAudio.current = new Audio('https://assets.mixkit.co/active_storage/sfx/2800/2800-preview.mp3');
-    alertAudio.current.volume = 0.4;
+    alertAudio.current.volume = 0.5;
     alertAudio.current.loop = true;
 
     return () => {
@@ -217,133 +344,6 @@ const Detector = ({
       }
     };
   }, []);
-
-  const samples = [
-    {
-      title: "Antarctic Discovery",
-      content: "BREAKING: Independent research team claims to have discovered a massive geothermal city beneath the Antarctic ice shield. Sources say government agencies are actively supressing the findings to prevent global panic over ancient technology.",
-      type: "DECEPTIVE"
-    },
-    {
-      title: "Market Volatility",
-      content: "The Federal Reserve announced a surprise interest rate cut today, citing concerns over stagnant growth in the manufacturing sector. Economists predict the move will stabilize markets ahead of the upcoming quarterly reporting cycle.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Miracle Cure",
-      content: "A hidden tropical fruit found in the Amazon has been proven to reverse the effects of aging and cure chronic heart disease in just 48 hours. Big Pharma has been keeping this secret to protect their profits. Share before this is taken down!",
-      type: "DECEPTIVE"
-    },
-    {
-      title: "Mars Exploration",
-      content: "NASA's Perseverance rover has successfully collected its first core sample from a rock that may have been altered by water in the ancient past. The sample will be stored for future return to Earth in a joint mission with the ESA.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Hyperloop Pilot",
-      content: "The first commercial Hyperloop track is set to open in the desert between Dubai and Abu Dhabi next month. Passengers will travel at speeds exceeding 700mph in vacuum-sealed pods, rendering traditional rail travel obsolete by 2030.",
-      type: "SENSATIONAL"
-    },
-    {
-      title: "Energy Breakthrough",
-      content: "Researchers at the National Ignition Facility have achieved a net energy gain in a fusion reaction for the second time, producing more energy from fusion than the laser energy used to drive it. This marks a major milestone for clean power.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Election Tampering",
-      content: "URGENT: Leaked documents show that smart thermostats were used to flip votes in several key counties during the last primary. The devices were reportedly accessed via a backdoor in the firmware by foreign intelligence services.",
-      type: "DECEPTIVE"
-    },
-    {
-      title: "Tech Regulation",
-      content: "European Union regulators have fined several major tech conglomerates over antitrust violations related to their digital advertising practices. The ruling mandates structural changes to ensure fair competition for smaller publishers.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Deep Sea Mystery",
-      content: "A strange, rhythmic metallic sound emanating from the Mariana Trench has stumped oceanographers. Some fringe theorists suggest it is a biological signal from a previously unknown gargantuan species living in the benthos.",
-      type: "SENSATIONAL"
-    },
-    {
-      title: "Global Warming",
-      content: "Arctic sea ice reached its minimum extent for the year, ranking among the lowest on record according to data from the NSIDC. The trend continues to show a significant decline in summer ice coverage over the last four decades.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Crypto Regulation",
-      content: "BREAKING: Global financial regulators have announced a complete ban on all decentralized trading platforms starting next Monday. The move aims to prevent systemic risk and combat money laundering through unhosted wallets.",
-      type: "SENSATIONAL"
-    },
-    {
-      title: "Ancient Ruins",
-      content: "Archeologists have discovered what appears to be a 5,000-year-old microchip embedded in a limestone block at a temple site in Southeast Asia. This finding challenges our entire understanding of primitive human technology.",
-      type: "DECEPTIVE"
-    },
-    {
-      title: "Space Station Beta",
-      content: "The International Space Station has successfully deployed the new 'Solar Web' array, a next-generation power collection system designed to increase energy efficiency by 40%. The mission was a collaborative effort between NASA, ESA, and JAXA, marking a significant step forward in long-term orbital sustainability and deep-space research preparation.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Ocean Preservation",
-      content: "A landmark treaty has been signed by 190 countries to protect 30% of the world's international waters by 2030. The 'High Seas Treaty' provides a legal framework for establishing large-scale marine protected areas, aiming to safeguard biodiversity and manage the impacts of climate change on ocean ecosystems for future generations.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Deep Report: Neural Ethics",
-      content: `[VERITAS DEEP ANALYSIS REPORT #882-A]
-      SUBJECT: THE EMERGENCE OF UNREGULATED NEURAL INTERFACES IN SEMI-AUTONOMOUS ECONOMIC ZONES.
-      
-      Executive Summary:
-      This 4,000-word investigative piece explores the rapid proliferation of sub-dermal communication nodes within the 'New Eden' administrative sector. Unlike consumer-grade wearables, these 'ghost-chips' operate on sub-1GHz frequencies, bypassing standard regulatory oversight and enabling what proponents call 'direct-thought commerce.' However, leaked internal documents from the bio-tech conglomerate Sirius Neuro-Systems suggest a much darker reality.
-      
-      The Investigation:
-      Over a period of six months, our team embedded with 'signal-runners'—individuals who maintain the clandestine mesh networks required for these interfaces to function. We discovered that the devices are not merely passive receivers but active cognitive modifiers. The data points to a consistent 12% increase in risk-taking behavior among users, specifically during peak trading hours on decentralized exchanges.
-      
-      Clinical Observations:
-      Medical professionals at the Fringe Health Clinic have reported a surge in 'synaptic-firewall failure,' a condition characterized by uncontrollable micro-tremors and acute sensory overload. Dr. Aris Thorne, head of neuro-pathology, states: "We are seeing structural changes in the prefrontal cortex that shouldn't be possible in adults. It's as if the brain is being literally re-wired to serve as a biological relay node."
-      
-      The Corporate Connection:
-      While Sirius Neuro-Systems publicly denies any involvement in the black-market distribution of these nodes, trace-route analysis of the firmware updates suggests the source servers are hosted within their primary data center in Reykjavik. The encryption keys used for the latest patch, v9.4.2, are identical to those used in the company's military-grade 'Aegis' project.
-      
-      Ethical Implications:
-      If these interfaces become the de facto standard for labor in economic zones, the concept of cognitive liberty ceases to exist. We found evidence of 'over-ride' protocols that allow network admins to induce a state of hyper-focus on demand. This 'focus-as-a-service' model is being marketed to logistics companies as the ultimate solution to warehouse fatigue, but at the cost of the user's long-term mental stability.
-      
-      Conclusion:
-      The data analyzed by Veritas.OS indicates a 98% probability that the promotional materials for these devices are deceptive, masking a systemic plan for behavioral control under the guise of technological evolution. The following 150 pages of raw signal data and witness testimony serve as a comprehensive indictment of the current trajectory of neural-commerce.
-      
-      [END OF SUMMARY LOG - PROCEED TO DATA ANALYSIS]`,
-      type: "LONG-FORM"
-    },
-    {
-      title: "Log: Global Finance 2026",
-      content: `TRANSCRIPT: EMERGENCY PLENARY SESSION - BASEL III+ AMENDMENTS
-      DATE: SEPTEMBER 14, 2026
-      LOCATION: INTERNATIONAL SETTLEMENTS COMPLEX, SECTOR 7
-      
-      Chairman: The session is now in order. We are here to address the 'Liquidity Singularity' observed in the sovereign debt markets of the G12 nations. What began as a localized algorithmic glitch in the Tokyo-Frankfurt high-frequency tunnel has evolved into a full-scale divergence of value-perception between physical and digital gold assets.
-      
-      Dr. Vogel: Mr. Chairman, the data suggests this is not a glitch. We have identified a pattern of 'Mirror-Trading' executed through unassigned quantum-ledgers. Essentially, someone is creating a parallel economy that looks identical to our own but operates with zero-latency reconciliation. This is draining the trust-capital from our centralized clearinghouses faster than we can inject synthetic liquidity.
-      
-      [Section 2: The Infrastructure Failure]
-      Last week, the primary fiber-optic cable crossing the Greenland-Iceland-UK (GIUK) gap was severed. While initially attributed to seismic activity, our underwater drones have captured footage of precision cutting tools being used. This wasn't an accident. It was a strategic isolation of the Atlantic markets to facilitate a 'Grand Re-Sync' of the valuation models.
-      
-      [Section 3: The Impact on Local Economies]
-      In the absence of a stable global anchor, currencies in the Pacific rim have started fluctuating by as much as 20% within a single hour. This 'Volatility-Pulse' is destroying the purchasing power of middle-market consumers. We are seeing a return to localized barter systems in cities like Seoul and Singapore, despite their advanced technological infrastructure.
-      
-      [Section 4: The Algorithm's Verdict]
-      Our own predictive engines, including the newly integrated Veritas.OS module, are flagging 84% of all institutional communication as 'Strategic Misinformation.' The banks are lying to the central banks, and the central banks are lying to each other to prevent a total collapse of the confidence-lattice.
-      
-      [Section 5: Proposed Intervention]
-      The committee proposes the immediate activation of the 'Hard-Reset' protocol. This involves the 48-hour suspension of all cross-border digital transactions and the physical auditing of all gold reserves. It is a brutal measure, but the alternative is the permanent fragmentation of the global financial identity.
-      
-      [Section 6: Dissenting Opinion]
-      However, many economists argue that this 'Singularity' is simply the natural evolution of value into a purely energetic form. They suggest we shouldn't fight the re-sync but rather adapt our institutions to it. This 'Post-Currency' movement is gaining traction among the younger demography, who have already migrated their assets into decentralized, energy-backed tokens.
-      
-      [END OF TRANSCRIPT - CLASSIFIED LEVEL 5]`,
-      type: "LONG-FORM"
-    }
-  ];
 
   const handleDetect = async () => {
     if (!text || text.length < 20) {
@@ -662,128 +662,6 @@ const Detector = ({
 };
 
 const ArchivesSection = ({ onLoadArticle }: { onLoadArticle: (content: string) => void }) => {
-  const samples = [
-    {
-      title: "Antarctic Discovery",
-      content: "BREAKING: Independent research team claims to have discovered a massive geothermal city beneath the Antarctic ice shield. Sources say government agencies are actively supressing the findings to prevent global panic over ancient technology.",
-      type: "DECEPTIVE"
-    },
-    {
-      title: "Market Volatility",
-      content: "The Federal Reserve announced a surprise interest rate cut today, citing concerns over stagnant growth in the manufacturing sector. Economists predict the move will stabilize markets ahead of the upcoming quarterly reporting cycle.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Miracle Cure",
-      content: "A hidden tropical fruit found in the Amazon has been proven to reverse the effects of aging and cure chronic heart disease in just 48 hours. Big Pharma has been keeping this secret to protect their profits. Share before this is taken down!",
-      type: "DECEPTIVE"
-    },
-    {
-      title: "Mars Exploration",
-      content: "NASA's Perseverance rover has successfully collected its first core sample from a rock that may have been altered by water in the ancient past. The sample will be stored for future return to Earth in a joint mission with the ESA.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Hyperloop Pilot",
-      content: "The first commercial Hyperloop track is set to open in the desert between Dubai and Abu Dhabi next month. Passengers will travel at speeds exceeding 700mph in vacuum-sealed pods, rendering traditional rail travel obsolete by 2030.",
-      type: "SENSATIONAL"
-    },
-    {
-      title: "Energy Breakthrough",
-      content: "Researchers at the National Ignition Facility have achieved a net energy gain in a fusion reaction for the second time, producing more energy from fusion than the laser energy used to drive it. This marks a major milestone for clean power.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Election Tampering",
-      content: "URGENT: Leaked documents show that smart thermostats were used to flip votes in several key counties during the last primary. The devices were reportedly accessed via a backdoor in the firmware by foreign intelligence services.",
-      type: "DECEPTIVE"
-    },
-    {
-      title: "Tech Regulation",
-      content: "European Union regulators have fined several major tech conglomerates over antitrust violations related to their digital advertising practices. The ruling mandates structural changes to ensure fair competition for smaller publishers.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Deep Sea Mystery",
-      content: "A strange, rhythmic metallic sound emanating from the Mariana Trench has stumped oceanographers. Some fringe theorists suggest it is a biological signal from a previously unknown gargantuan species living in the benthos.",
-      type: "SENSATIONAL"
-    },
-    {
-      title: "Global Warming",
-      content: "Arctic sea ice reached its minimum extent for the year, ranking among the lowest on record according to data from the NSIDC. The trend continues to show a significant decline in summer ice coverage over the last four decades.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Ancient Ruins",
-      content: "Archeologists have discovered what appears to be a 5,000-year-old microchip embedded in a limestone block at a temple site in Southeast Asia. This finding challenges our entire understanding of primitive human technology.",
-      type: "DECEPTIVE"
-    },
-    {
-      title: "Space Station Beta",
-      content: "The International Space Station has successfully deployed the new 'Solar Web' array, a next-generation power collection system designed to increase energy efficiency by 40%. The mission was a collaborative effort between NASA, ESA, and JAXA, marking a significant step forward in long-term orbital sustainability and deep-space research preparation.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Ocean Preservation",
-      content: "A landmark treaty has been signed by 190 countries to protect 30% of the world's international waters by 2030. The 'High Seas Treaty' provides a legal framework for establishing large-scale marine protected areas, aiming to safeguard biodiversity and manage the impacts of climate change on ocean ecosystems for future generations.",
-      type: "AUTHENTIC"
-    },
-    {
-      title: "Deep Report: Neural Ethics",
-      content: `[VERITAS DEEP ANALYSIS REPORT #882-A]
-      SUBJECT: THE EMERGENCE OF UNREGULATED NEURAL INTERFACES IN SEMI-AUTONOMOUS ECONOMIC ZONES.
-      
-      Executive Summary:
-      This 4,000-word investigative piece explores the rapid proliferation of sub-dermal communication nodes within the 'New Eden' administrative sector. Unlike consumer-grade wearables, these 'ghost-chips' operate on sub-1GHz frequencies, bypassing standard regulatory oversight and enabling what proponents call 'direct-thought commerce.' However, leaked internal documents from the bio-tech conglomerate Sirius Neuro-Systems suggest a much darker reality.
-      
-      The Investigation:
-      Over a period of six months, our team embedded with 'signal-runners'—individuals who maintain the clandestine mesh networks required for these interfaces to function. We discovered that the devices are not merely passive receivers but active cognitive modifiers. The data points to a consistent 12% increase in risk-taking behavior among users, specifically during peak trading hours on decentralized exchanges.
-      
-      Clinical Observations:
-      Medical professionals at the Fringe Health Clinic have reported a surge in 'synaptic-firewall failure,' a condition characterized by uncontrollable micro-tremors and acute sensory overload. Dr. Aris Thorne, head of neuro-pathology, states: "We are seeing structural changes in the prefrontal cortex that shouldn't be possible in adults. It's as if the brain is being literally re-wired to serve as a biological relay node."
-      
-      The Corporate Connection:
-      While Sirius Neuro-Systems publicly denies any involvement in the black-market distribution of these nodes, trace-route analysis of the firmware updates suggests the source servers are hosted within their primary data center in Reykjavik. The encryption keys used for the latest patch, v9.4.2, are identical to those used in the company's military-grade 'Aegis' project.
-      
-      Ethical Implications:
-      If these interfaces become the de facto standard for labor in economic zones, the concept of cognitive liberty ceases to exist. We found evidence of 'over-ride' protocols that allow network admins to induce a state of hyper-focus on demand. This 'focus-as-a-service' model is being marketed to logistics companies as the ultimate solution to warehouse fatigue, but at the cost of the user's long-term mental stability.
-      
-      Conclusion:
-      The data analyzed by Veritas.OS indicates a 98% probability that the promotional materials for these devices are deceptive, masking a systemic plan for behavioral control under the guise of technological evolution. The following 150 pages of raw signal data and witness testimony serve as a comprehensive indictment of the current trajectory of neural-commerce.
-      
-      [END OF SUMMARY LOG - PROCEED TO DATA ANALYSIS]`,
-      type: "LONG-FORM"
-    },
-    {
-      title: "Log: Global Finance 2026",
-      content: `TRANSCRIPT: EMERGENCY PLENARY SESSION - BASEL III+ AMENDMENTS
-      DATE: SEPTEMBER 14, 2026
-      LOCATION: INTERNATIONAL SETTLEMENTS COMPLEX, SECTOR 7
-      
-      Chairman: The session is now in order. We are here to address the 'Liquidity Singularity' observed in the sovereign debt markets of the G12 nations. What began as a localized algorithmic glitch in the Tokyo-Frankfurt high-frequency tunnel has evolved into a full-scale divergence of value-perception between physical and digital gold assets.
-      
-      Dr. Vogel: Mr. Chairman, the data suggests this is not a glitch. We have identified a pattern of 'Mirror-Trading' executed through unassigned quantum-ledgers. Essentially, someone is creating a parallel economy that looks identical to our own but operates with zero-latency reconciliation. This is draining the trust-capital from our centralized clearinghouses faster than we can inject synthetic liquidity.
-      
-      [Section 2: The Infrastructure Failure]
-      Last week, the primary fiber-optic cable crossing the Greenland-Iceland-UK (GIUK) gap was severed. While initially attributed to seismic activity, our underwater drones have captured footage of precision cutting tools being used. This wasn't an accident. It was a strategic isolation of the Atlantic markets to facilitate a 'Grand Re-Sync' of the valuation models.
-      
-      [Section 3: The Impact on Local Economies]
-      In the absence of a stable global anchor, currencies in the Pacific rim have started fluctuating by as much as 20% within a single hour. This 'Volatility-Pulse' is destroying the purchasing power of middle-market consumers. We are seeing a return to localized barter systems in cities like Seoul and Singapore, despite their advanced technological infrastructure.
-      
-      [Section 4: The Algorithm's Verdict]
-      Our own predictive engines, including the newly integrated Veritas.OS module, are flagging 84% of all institutional communication as 'Strategic Misinformation.' The banks are lying to the central banks, and the central banks are lying to each other to prevent a total collapse of the confidence-lattice.
-      
-      [Section 5: Proposed Intervention]
-      The committee proposes the immediate activation of the 'Hard-Reset' protocol. This involves the 48-hour suspension of all cross-border digital transactions and the physical auditing of all gold reserves. It is a brutal measure, but the alternative is the permanent fragmentation of the global financial identity.
-      
-      [Section 6: Dissenting Opinion]
-      However, many economists argue that this 'Singularity' is simply the natural evolution of value into a purely energetic form. They suggest we shouldn't fight the re-sync but rather adapt our institutions to it. This 'Post-Currency' movement is gaining traction among the younger demography, who have already migrated their assets into decentralized, energy-backed tokens.
-      
-      [END OF TRANSCRIPT - CLASSIFIED LEVEL 5]`,
-      type: "LONG-FORM"
-    }
-  ];
-
   return (
     <section id="archives" className="py-32 bg-brand-primary border-y border-white/5 relative data-grid">
       <Container>
@@ -802,7 +680,7 @@ const ArchivesSection = ({ onLoadArticle }: { onLoadArticle: (content: string) =
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {samples.map((s, i) => (
+          {SAMPLES.map((s, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
@@ -994,10 +872,10 @@ const Footer = () => (
       <div className="mt-20 pt-8 border-t border-white/5 flex flex-col items-center gap-6 text-[9px] font-mono text-slate-600 tracking-widest">
         <div className="flex flex-col sm:flex-row justify-between items-center w-full gap-4">
           <span>© 2026 VERITAS ML PROTOCOLS</span>
-          <span>LATENCY: 1.24 MS / REGION: ASIA-CENTRAL</span>
+          <span>LATENCY: 1.24 MS / REGION: INDIA</span>
         </div>
         <div className="text-brand-accent font-bold text-center text-xs animate-pulse">
-          ❤️ MADE BY LAKSH ❤️
+          ❤️MADE BY LAKSH❤️
         </div>
       </div>
     </Container>
