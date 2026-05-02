@@ -1,0 +1,6 @@
+{
+  "name": "VeriTruth: Fake News Detector",
+  "description": "A machine learning project showcasing Fake News detection using TF-IDF, Logistic Regression, and Naive Bayes.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
