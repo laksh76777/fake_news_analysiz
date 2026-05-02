@@ -1,5 +1,5 @@
 {
-  "name": "VeriTruth: Fake News Detector",
+  "name": "VERITAS_OS",
   "description": "A machine learning project showcasing Fake News detection using TF-IDF, Logistic Regression, and Naive Bayes.",
   "requestFramePermissions": [],
   "majorCapabilities": []
